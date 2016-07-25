@@ -8,6 +8,11 @@ DEFENDER = [TOUGH, TOUGH, ATTACK, MOVE]
 HEALER = [TOUGH, HEAL, MOVE, MOVE]
 
 module.exports.loop = ->
+    # Free memory
+    for name of Memory.creeps
+        if Game.creeps[name] == undefined
+            delete Memory.creeps[name]
+
     # Ensure 5 Worker Creeps Active
     workerCreeps = []
     for creep in Game.creeps
