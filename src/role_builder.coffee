@@ -9,4 +9,12 @@ roleBuilder = run: (creep) ->
         if site
             if creep.build(site) == ERR_NOT_IN_RANGE
                 creep.moveTo(site)
+                return
+
+        sites = creep.room.find(FIND_CONSTRUCTION_SITES)
+        if sites.length == 0
+            Game.notify("Builder just suicided. Found: " + sites.length + " sites")
+            creep.suicide()
+            return
+
 module.exports = roleBuilder
